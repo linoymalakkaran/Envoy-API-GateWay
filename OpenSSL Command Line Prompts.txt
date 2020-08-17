@@ -1,4 +1,20 @@
+1) Docker compose
 openssl req -config https.config -new -out csr.pem
 
 openssl x509 -req -days 365 -extfile https.config -extensions v3_req -in csr.pem -signkey key.pem -out https.crt
+
+2) For Tea and Coffie projects (need to be run from user profile powershell)
+ dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\CoffeeAPI.pfx -p p@ssw0rd
+ dotnet dev-certs https --trust
+
+ dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\TeaAPIAPI.pfx -p p@ssw0rd
+ dotnet dev-certs https --trust
+
+
+3) after inseting secret ket inside .csproj run below commads from both Coffee and Tea root folder
+dotnet user-secrets set "Kestrel:Certificates:Development:Password" "p@ssw0rd"
+
+
+
+
 
